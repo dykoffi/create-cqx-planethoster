@@ -104,27 +104,11 @@ export async function writeEnv(apiname) {
     });
 }
 
-export async function writeSecretsJSON(apiname) {
+export async function writeEnvJSON(apiname) {
     let transFile = await ejs.renderFile(
-        join(__dirname, "../templates/secrets.json")
+        join(__dirname, "../templates/env.json")
     );
-    fs.writeFile(join(apiname, "secrets.json"), transFile, (err) => {
-        if (err) throw err;
-    });
-}
-
-export async function writeDocker(apiname, description) {
-    let transFile = await ejs.renderFile(
-        join(__dirname, "../templates/Dockerfile-multiple-staging"), { apiname, description }
-    );
-    fs.writeFile(join(apiname, "Dockerfile"), transFile, (err) => {
-        if (err) throw err;
-    });
-
-    let transFile2 = await ejs.renderFile(
-        join(__dirname, "../templates/.Dockerignore"), { apiname }
-    );
-    fs.writeFile(join(apiname, ".Dockerignore"), transFile2, (err) => {
+    fs.writeFile(join(apiname, "env.json"), transFile, (err) => {
         if (err) throw err;
     });
 }
@@ -136,6 +120,15 @@ export async function writeCompose(apiname) {
     fs.writeFile(join(apiname, "docker-compose.yml"), transfile, (err) => {
         if (err) throw err;
     });
+}
+
+export async function writeDeployJson(appPath, appEnv) {
+  let transfile = await ejs.renderFile(
+      join(__dirname, "../templates/deploy.json"), { appPath, appEnv }
+  );
+  fs.writeFile(join(apiname, "deploy.json"), transfile, (err) => {
+      if (err) throw err;
+  });
 }
 
 export async function writeReadme(apiname) {
@@ -177,24 +170,6 @@ export async function writePrettier(apiname) {
         join(__dirname, "../templates/prettierignore")
     );
     fs.writeFile(join(apiname, ".prettierignore"), transFile2, (err) => {
-        if (err) throw err;
-    });
-}
-
-export async function writeDokcerCircle(apiname) {
-    let transFile = await ejs.renderFile(
-        join(__dirname, "../templates/Dockerfile-circleci"), { apiname }
-    );
-    fs.writeFile(join(apiname, "Dockerfile-circleci"), transFile, (err) => {
-        if (err) throw err;
-    });
-}
-
-export async function writeSetup(apiname) {
-    let transFile = await ejs.renderFile(join(__dirname, "../templates/setup"), {
-        apiname,
-    });
-    fs.writeFile(join(apiname, "setup.sh"), transFile, (err) => {
         if (err) throw err;
     });
 }

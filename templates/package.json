@@ -1,94 +1,94 @@
 {
-    "name": "doc",
-    "version": "1.0.0",
-    "description": "",
-    "main": "./index.ts",
-    "private": false,
-    "scripts": {
-        "build": "rm -rdf build && cqx build",
-        "lint": "prettier -wc .",
-        "start:stack": "docker compose up -d",
-        "start:dev": "NODE_ENV=local nodemon ./index.ts",
-        "start:debug": "NODE_ENV=local DEBUG=* nodemon ./index.ts",
-        "test": "NODE_ENV=test jest --coverage",
-        "update": "prisma migrate dev && cqx update --dto",
-        "version": "cqx version"
+  "name": "doc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./index.ts",
+  "private": false,
+  "scripts": {
+    "build": "rm -rdf build && cqx build",
+    "lint": "prettier -wc .",
+    "start:stack": "docker compose up -d",
+    "start:dev": "NODE_ENV=local nodemon ./index.ts",
+    "start:debug": "NODE_ENV=local DEBUG=* nodemon ./index.ts",
+    "test": "NODE_ENV=test jest --coverage",
+    "update": "prisma migrate dev && cqx update --dto",
+    "version": "cqx version"
+  },
+  "dependencies": {
+    "compression": "^1.7.4",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.0",
+    "cors": "^2.8.5",
+    "cqx-secure": "^1.8.1",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "flat": "^5.0.2",
+    "helmet": "^6.0.1",
+    "jsonwebtoken": "^9.0.0",
+    "morgan": "^1.10.0",
+    "prom-client": "^14.1.1",
+    "serve-favicon": "^2.5.0",
+    "winston": "^3.8.2",
+    "winston-daily-rotate-file": "^4.7.1"
+  },
+  "devDependencies": {
+    "@types/compression": "^1.7.2",
+    "@types/cors": "^2.8.13",
+    "@types/express": "^4.17.17",
+    "@types/flat": "^5.0.2",
+    "@types/jest": "^29.4.0",
+    "@types/jsonwebtoken": "^9.0.1",
+    "@types/morgan": "^1.9.4",
+    "@types/node": "^18.4.2",
+    "@types/on-finished": "^2.3.1",
+    "@types/serve-favicon": "^2.5.3",
+    "@types/swagger-ui-express": "^4.1.3",
+    "cqx": "^1.13.5",
+    "jest": "^29.4.3",
+    "jest-junit": "^15.0.0",
+    "prettier": "^2.8.4",
+    "prisma": "^4.11.0",
+    "prisma-json-schema-generator": "^3.1.2",
+    "supertest": "^6.3.3",
+    "ts-jest": "^29.0.5",
+    "ts-loader": "^9.4.2",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.5",
+    "webpack": "^5.75.0"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "rootDir": ".",
+    "roots": [
+      "./src/",
+      "./tests/"
+    ],
+    "testRegex": ".*\\.test\\.ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
     },
-    "dependencies": {
-        "compression": "^1.7.4",
-        "class-transformer": "^0.5.1",
-        "class-validator": "^0.14.0",
-        "cors": "^2.8.5",
-        "cqx-secure": "^1.8.1",
-        "dotenv": "^16.0.3",
-        "express": "^4.18.2",
-        "flat": "^5.0.2",
-        "helmet": "^6.0.1",
-        "jsonwebtoken": "^9.0.0",
-        "morgan": "^1.10.0",
-        "prom-client": "^14.1.1",
-        "serve-favicon": "^2.5.0",
-        "winston": "^3.8.2",
-        "winston-daily-rotate-file": "^4.7.1"   
-    },
-    "devDependencies": {
-        "@types/compression": "^1.7.2",
-        "@types/cors": "^2.8.13",
-        "@types/express": "^4.17.17",
-        "@types/flat": "^5.0.2",
-        "@types/jest": "^29.4.0",
-        "@types/jsonwebtoken": "^9.0.1",
-        "@types/morgan": "^1.9.4",
-        "@types/node": "^18.4.2",
-        "@types/on-finished": "^2.3.1",
-        "@types/serve-favicon": "^2.5.3",
-        "@types/swagger-ui-express": "^4.1.3",
-        "cqx": "^1.13.5",
-        "jest": "^29.4.3",
-        "jest-junit": "^15.0.0",
-        "prettier": "^2.8.4",
-        "prisma": "^4.11.0",
-        "prisma-json-schema-generator": "^3.1.2",
-        "supertest": "^6.3.3",
-        "ts-jest": "^29.0.5",
-        "ts-loader": "^9.4.2",
-        "ts-node": "^10.9.1",
-        "typescript": "^4.9.5",
-        "webpack": "^5.75.0"
-    },
-    "jest": {
-        "moduleFileExtensions": [
-            "js",
-            "json",
-            "ts"
-        ],
-        "rootDir": ".",
-        "roots": [
-            "./src/",
-            "./tests/"
-        ],
-        "testRegex": ".*\\.test\\.ts$",
-        "transform": {
-            "^.+\\.(t|j)s$": "ts-jest"
-        },
-        "collectCoverageFrom": [
-            "**/*.(t|j)s"
-        ],
-        "coverageDirectory": "./coverage",
-        "testEnvironment": "node"
-    },
-    "author": {
-        "email": "koffiedy@gmail.com",
-        "name": "KOFFI Edy",
-        "url": "https://www.linkedin.com/in/edy-koffi-948494192/"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/author/doc.git"
-    },
-    "bugs": {
-        "url": "https://github.com/author/doc/issues"
-    },
-    "homepage": "git+https://github.com/author/doc#readme",
-    "license": "MIT"
+    "collectCoverageFrom": [
+      "**/*.(t|j)s"
+    ],
+    "coverageDirectory": "./coverage",
+    "testEnvironment": "node"
+  },
+  "author": {
+    "email": "koffiedy@gmail.com",
+    "name": "KOFFI Edy",
+    "url": "https://www.linkedin.com/in/edy-koffi-948494192/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/author/doc.git"
+  },
+  "bugs": {
+    "url": "https://github.com/author/doc/issues"
+  },
+  "homepage": "git+https://github.com/author/doc#readme",
+  "license": "MIT"
 }
