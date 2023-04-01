@@ -1,0 +1,12 @@
+**/.git
+**/.svn
+**/.hg
+**/node_modules
+*.json
+*.html
+*.yml
+*.yaml
+*.css
+*.js
+*.md
+.prettierrc

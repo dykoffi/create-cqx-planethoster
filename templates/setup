@@ -1,0 +1,4 @@
+gh repo create --public --source .
+gcloud artifacts repositories create <%= apiname%> --location europe-north1 --repository-format docker
+gcloud sql instances create ins<%= apiname%> --tier=db-g1-small --root-password=azertyuiop --region=europe-north1 --database-version=POSTGRES_14
+circleci follow

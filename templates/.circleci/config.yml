@@ -1,0 +1,74 @@
+version: 2.1
+executors:
+  ubuntu-default:
+    machine:
+      image: ubuntu-2004:current
+    shell: bash
+    environment:
+      VERSION: 1.0.0
+      REPO: linkpay
+
+commands:
+  restore_cache_yarn:
+    steps:
+      - restore_cache:
+          keys:
+            - yarn-v1-{{checksum "yarn.lock"}}
+            - yarn-v1-
+
+  save_cache_yarn:
+    steps:
+      - save_cache:
+          paths:
+            - ./node_modules
+          key: yarn-v1-{{checksum "yarn.lock"}}
+
+jobs:
+  build_deploy_on_cloud_run:
+    executor: ubuntu-default
+    steps:
+      - checkout
+
+      ####################### INSTALL DEPENDENCIES ###########################
+
+      - restore_cache_yarn
+      - run:
+          name: Install dependencies
+          command: yarn install
+      - save_cache_yarn
+
+      ####################### TEST PROJECT ###########################
+
+      - run:
+          name: Run code test
+          command: JEST_JUNIT_OUTPUT_DIR="./artifacts" yarn test --ci --reporters=jest-junit
+
+      - store_artifacts:
+          path: coverage
+
+      - store_test_results:
+          path: artifacts
+
+      # ####################### BUILD PROJECT ###########################
+
+      # - run:
+      #     name: Build project
+      #     command: yarn cqx build
+      # - run:
+      #     name: Install production packages
+      #     command: yarn install --prod
+      #     working_directory: build
+
+      # ####################### DOCKER BUILD ###########################
+
+      # - run:
+      #     name: Building docker Image
+      #     command: docker build -t dykoffi/${REPO} .
+      #     working_directory: build
+
+workflows:
+  deploy:
+    jobs:
+      - build_deploy_on_cloud_run:
+          context:
+            - cqx

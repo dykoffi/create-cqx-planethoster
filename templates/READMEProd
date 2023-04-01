@@ -1,0 +1,21 @@
+## CIQL Documentation for deployment (production)
+
+### Prerequises
+- [Nodejs](https://nodejs.org/en/)
+- [PostreSQL](https://www.postgresql.org)
+- [Redis BD](https://redis.io/)
+- [PM2](https://pm2.keymetrics.io/docs/usage/quick-start/)
+
+### Databases supported
+- [PostreSQL](https://www.prisma.io/docs/concepts/database-connectors/postgresql)
+- [Microsoft SQL Server](https://www.prisma.io/docs/concepts/database-connectors/sql-server)
+- [Mysql](https://www.prisma.io/docs/concepts/database-connectors/mysql)
+- [Sqlite](https://www.prisma.io/docs/concepts/database-connectors/sqlite)
+- [MongoDB](https://www.mongodb.com/)
+
+### For deployment
+
+1. In **.env** define your prod database information
+2. Following your database type change datasource/provider in **prisma/schema.prisma** (postgresql, mysql, sqlite, sqlserver, mongodb)
+3. Type **yarn install** for installing all node packages
+4. Type **yarn start** to run project

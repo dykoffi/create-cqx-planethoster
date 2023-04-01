@@ -1,0 +1,18 @@
+version: "3.9" # optional since v1.27.0
+services:
+  <%= apiname %>_db_dev:
+    image: postgres:14-alpine
+    container_name: <%= apiname %>_db_dev
+    environment:
+      - POSTGRES_USER=<%= apiname %>_user
+      - POSTGRES_DB=<%= apiname %>_db_dev
+      - POSTGRES_PASSWORD=<%= db_pass %>
+    ports:
+      - <%= dev_port %>:5432
+    volumes:
+      - <%= apiname %>_vol_dev:/var/lib/postgresql/data
+
+
+volumes:
+  <%= apiname %>_vol_dev:
+    driver: local

@@ -1,0 +1,19 @@
+FROM dykoffi/node:alpine
+
+# Copy package.json file
+WORKDIR /App
+COPY package.json .
+
+# install all nodejs package
+RUN yarn install --prod
+
+COPY . .
+RUN prisma generate
+
+# Expose port for communication
+EXPOSE 80
+
+# update database url info
+CMD echo "DATABASE_URL=${DATABASE_URL}" > .env \
+    && prisma migrate deploy \
+    && NODE_ENV=production pm2-runtime index.js --name <%= apiname %>

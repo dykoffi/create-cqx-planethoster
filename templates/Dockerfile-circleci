@@ -1,0 +1,5 @@
+FROM dykoffi/node:pm2-light as release
+WORKDIR /App
+COPY . ./
+EXPOSE 80
+CMD NODE_ENV=production pm2-runtime index.js --name <%= apiname %>
