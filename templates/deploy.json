@@ -1,12 +1,13 @@
 {
-  "planethoster": {
+  "dev": {
+    "pre_build":"yarn test --ci",
     "build": "cqx build",
     "artifact": "build",
-    "push_on": {
+    "deploy_on": {
       "hostname": "node52-eu.n0c.com",
       "port": "5022",
       "path": "<%= appPath %>",
-      "cmd": "source <%= appEnv %> && yarn && echo date -u >> <%= appPath %>/tmp/restart.txt"
+      "cmd": "source <%= appEnv %> && yarn && echo date -u >> tmp/restart.txt"
     },
     "post_build": "rm -rdf build",
     "url": "<%= appDomain %>"
