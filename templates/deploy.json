@@ -9,7 +9,7 @@
       "path": "<%= appPath %>",
       "cmd": "source <%= appEnv %> && yarn && echo date -u >> tmp/restart.txt"
     },
-    "post_build": "rm -rdf build",
+    "post_deploy": "rm -rdf build",
     "url": "<%= appDomain %>"
   }
 }
