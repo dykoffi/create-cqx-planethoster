@@ -1,4 +1,4 @@
-import { createFolder, isEmpty } from "../libs/utils.js";
+import { createFolder, isEmpty, logSuccess, logWarning } from "../libs/utils.js";
 import fetch from "node-fetch"
 import {
   writePackage,
@@ -38,10 +38,13 @@ function init(
       // RUN WEBHOOK FOR RUNNING THE CREATION WORKFLOW
 
       fetch("https://workflows.core.ciql.org/webhook/cqx/create?name=" + apiname)
-        .then(async (data) => {
-          console.log(await data.json());
+        .then(async (response) => {
+          let { appPath, appEnv, appDomain } = await response.json()
+          writeDeployJson(apiname, appPath, appEnv, appDomain)
+          logSuccess("Appliction created on planethoster")
         })
         .catch(err => {
+          logWarning("Somethign wrong, we coudn't create your app on planethoster")
           console.error(err);
         })
 

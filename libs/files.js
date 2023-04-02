@@ -122,9 +122,9 @@ export async function writeCompose(apiname) {
     });
 }
 
-export async function writeDeployJson(appPath, appEnv) {
+export async function writeDeployJson(apiname, appPath, appEnv, appDomain) {
   let transfile = await ejs.renderFile(
-      join(__dirname, "../templates/deploy.json"), { appPath, appEnv }
+      join(__dirname, "../templates/deploy.json"), { appPath, appEnv, appDomain }
   );
   fs.writeFile(join(apiname, "deploy.json"), transfile, (err) => {
       if (err) throw err;

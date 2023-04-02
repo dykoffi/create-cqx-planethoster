@@ -1,18 +1,16 @@
 version: "3.9" # optional since v1.27.0
 services:
   <%= apiname %>_db_dev:
-    image: postgres:14-alpine
-    container_name: <%= apiname %>_db_dev
+    image: mariadb:10.3.38
+    container_name: <%= apiname %>
     environment:
-      - POSTGRES_USER=<%= apiname %>_user
-      - POSTGRES_DB=<%= apiname %>_db_dev
-      - POSTGRES_PASSWORD=<%= db_pass %>
+      - MARIADB_USER=root
+      - MARIADB_ALLOW_EMPTY_ROOT_PASSWORD=true
     ports:
-      - <%= dev_port %>:5432
+      - <%= dev_port %>:3306
     volumes:
-      - <%= apiname %>_vol_dev:/var/lib/postgresql/data
-
+      - <%= apiname %>:/var/lib/mysql
 
 volumes:
-  <%= apiname %>_vol_dev:
+  <%= apiname %>:
     driver: local

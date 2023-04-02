@@ -53,7 +53,6 @@
 5. Use `circleci follow` to attempt to follow the project for the current git repository
 6. Use `circleci open` to open the project in the browser
 
-
 ### Git pre-commit considerations
  
 If you need to validate your commits by checking the results of your tests or the linting of your code, you can use the prepare-commit-msg hook. To do so, you can use the :
@@ -71,7 +70,7 @@ mv .git/hooks/prepare-commmit-msg.sample .git/hooks/prepare-commit-msg
 circleci config validate && yarn lint && yarn jest
    ```
 
-### Deploy on gcloud (Cloud run)
+### Deploy on planetHoster
 
 ```bash
 # Build the docker image using 
