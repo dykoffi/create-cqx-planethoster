@@ -9,7 +9,6 @@
     "lint": "prettier -wc .",
     "start:stack": "docker compose up -d",
     "start:dev": "NODE_ENV=local nodemon ./index.ts",
-    "start:debug": "NODE_ENV=local DEBUG=* nodemon ./index.ts",
     "test": "NODE_ENV=test jest --coverage",
     "update": "prisma migrate dev && cqx update --dto",
     "version": "cqx version"
