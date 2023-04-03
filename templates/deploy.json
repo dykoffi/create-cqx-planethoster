@@ -7,7 +7,14 @@
       "host": "node52-eu.n0c.com",
       "port": "5022",
       "path": "<%= appPath %>",
-      "cmd": "source <%= appEnv %> && yarn && echo date -u >> tmp/restart.txt"
+      "cmd": [
+        "source <%= appEnv %>/16/bin/activate",
+        "grep -r -l '/etc/os-release'  <%= appEnv %>/16 | xargs sed -i 's/\/etc\/os-release/\/home\/eftmyepx\/os-release/g'",
+        "yarn",
+        "prisma generate",
+        "prisma migrate deploy",
+        "echo $(date -u) >> tmp/restart.txt"
+      ] 
     },
     "post_deploy": "rm -rdf build",
     "url": "<%= appDomain %>"
